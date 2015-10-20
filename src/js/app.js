@@ -1,5 +1,5 @@
 (function (ng, win, doc){
-    var app = angular.module('app', ['ngAnimate', 'mgcrea.ngStrap.modal', 'ui.router', 'ajoslin.promise-tracker']),
+    var app = angular.module('app', ['ngAnimate', 'mgcrea.ngStrap.modal', 'ui.router', 'ajoslin.promise-tracker', 'ui.utils.masks']),
     flowData = {},
     loading = document.getElementById('loading'),
     spinner = new Spinner(opts).spin(loading),
@@ -51,7 +51,7 @@
                     { "img": "http://www.harprefiquote.com/sh3/images/buttons-refi2.png", "btn": false, "val": "refinance" }
                 ]
             }
-        };
+        };   
         
         $scope.logoUrl = "http://www.harprefiquote.com/sh3/images/hrq.png";
         $scope.headline = "Qualify for HARP Refinance Program and SAVE ON YOUR MORTGAGE!*";
@@ -74,11 +74,9 @@
         }
 
         $scope.update = function(k, v) {
-            //flowData += k+"="+v+"&";
             flowData[k] = v;
 
             console.log("LOAN TYPE: "+flowData.loanType, "HOME FOUND? "+flowData.homeFound);
-        //    console.log($scope.slides, $scope.slides[43]);
             console.log(flowData);
 
 
@@ -139,7 +137,7 @@
                         "next": flowData.homeFound === "yes" ? 42 : 43,
                         "title": "What is the Price of the New Home?",
                         "rangeSlider": {
-                            "cls": "curr",
+                            "unit": "currency",
                             "min": 80000,
                             "max": 1000000,
                             "def": 80000,
@@ -218,11 +216,11 @@
                         "next": 4,
                         "title": "What is your Property Value?",
                         "rangeSlider": {
-                            "cls": "curr",
+                            "unit": "currency",
                             "min": 80000,
                             "max": 1000000,
                             "def": flowData.propertyValue ? flowData.propertyValue : 80000,
-                            "step": 1
+                            "step": 500
                         }
                     },
                     "4" : {
@@ -232,11 +230,11 @@
                         "next": 5,
                         "title": "What is your Mortgage Balance?",
                         "rangeSlider": {
-                            "cls": "curr",
+                            "unit": "currency",
                             "min": 0,
                             "max": 1000000,
                             "def": flowData.mortgageBalance ? flowData.mortgageBalance : 0,
-                            "step": 1
+                            "step": 500
                         }
                     },
                     "5" : {
@@ -246,11 +244,11 @@
                         "next": flowData.creditRating === "excellent" || flowData.creditRating === "good" ? 61 : 51,
                         "title": "What is your Current Interest Rate?",
                         "rangeSlider": {
-                            "cls": "perc",
+                            "unit": "percentage",         
                             "min": 3,
                             "max": 10,
                             "def": flowData.currentRate ? flowData.currentRate : 4,
-                            "step": 0.25
+                            "step": 0.125
                         }
                     },
 
@@ -515,10 +513,22 @@
     }]);
 
 
+    app.filter('percentage', ['$filter', function ($filter) {
+      return function (input, decimals) {
+        return $filter('number')(input, decimals) + '%';
+      };
+    }]);
+    
+    app.filter('currency', ['$filter', function ($filter) {
+      return function (input) {
+        return '$' + $filter('number')(input);
+      };
+    }]);     
+    
     app.directive( "rangeSlider", function ( $timeout, $filter ) {
         return {
             restrict: "A",
-            template: "<div style=\"height:60px;\"><label class=\"amt {{ slide.rangeSlider.cls }}\" for=\"{{ slide.rangeSlider.label }}\"><span ng-bind=\"amt\" class=\"ng-binding\"></span></label><h5 ng-if=\" amt == slide.rangeSlider.min \">or under</h5><h5 ng-if=\" amt == slide.rangeSlider.max \">or over</h5></div><input type=\"range\" ng-model=\"amt\" min=\"{{slide.rangeSlider.min}}\" max=\"{{slide.rangeSlider.max}}\" step=\"{{slide.rangeSlider.step}}\" id=\"{{ slide.rangeSlider.label }}\" class=\"ng-valid ng-dirty\" ng-click=\"update(slide.label, amt)\" />",
+            template: "<div style=\"height:60px;\"><input class=\"amt\" type=\"text\" ng-bind=\"amt\" ng-value=\"amt | {{slide.rangeSlider.unit}} \" /><div ng-if=\"slide.rangeSlider.unit == 'currency'\"><h5 ng-if=\" amt <= slide.rangeSlider.min \">or under</h5><h5 ng-if=\" amt == slide.rangeSlider.max \">or over</h5></div></div><input type=\"range\" ng-model=\"amt\" min=\"{{slide.rangeSlider.min}}\" max=\"{{slide.rangeSlider.max}}\" step=\"{{slide.rangeSlider.step}}\" id=\"{{ slide.rangeSlider.label }}\" class=\"ng-valid ng-dirty\" ng-click=\"update(slide.label, amt)\" />",
             link: function ( scope, element, attr ) {
                 var index = attr.rangeSlider;
              //   scope.amt = $filter('number')(scope.slides[index].rangeSlider.def);

@@ -9,7 +9,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.1/angular-animate.min.js" type="text/javascript"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js" type="text/javascript"></script>
     <script src="http://fgnass.github.io/spin.js/spin.min.js" type="text/javascript"></script>
-    <script src="../js/spinner-settings.js" type="text/javascript" ></script>
+    <script src="../js/spinner-settings.js" type="text/javascript"></script>
+    <script src="../../node_modules/angular-input-masks/releases/angular-input-masks-standalone.min.js"></script>
     <!-- css -->
     <link href="https://cdn.jsdelivr.net/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="../../dist/css/style.css" rel="stylesheet" type="text/less" />
@@ -23,7 +24,7 @@
     <div class="container-fluid fade">
         <div ng-controller="DataCtrl as dat" class="row wrapper">
 
-            <img class="logo" ng-src="{{ logoUrl }}" />
+            <div class="row"><img class="logo col-lg-4 col-md-4 col-sm-5 col-xs-6" ng-src="{{ logoUrl }}" style="float:none;"/></div>
             <h2 class="headline"> {{ headline }} </h2>
             <h3 class="subhead">{{ subhead }}</h3>
        
@@ -67,7 +68,7 @@
         </div>
 
         <footer>
-            <div id="partnerLogos" class="row"><img src="http://www.harprefiquote.com/sh3/images/logosPartners.png"></div>
+            <div id="partnerLogos" class="row"><img src="http://www.harprefiquote.com/sh3/images/logosPartners.png" class="hidden-sm hidden-xs"></div>
             <div id="policy" class="row">
                 <p><a href="/privacy/" class="tou">Privacy Policy | Terms of Use</a></p>
 <p>*The White House projects the lower premiums will entice 250,000 buyers to take out FHA loans in the next three years, and that the new borrowers will save nearly $1,000 (an average of $900) annually. - The Washington Post. For more information, click <a href="http://www.washingtonpost.com/blogs/wonkblog/wp/2015/01/07/obama-to-announce-lower-fees-for-a-mortgage-thats-popular-with-first-time-buyers/">here</a></p>

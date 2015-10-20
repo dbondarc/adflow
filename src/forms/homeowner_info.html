@@ -1,37 +1,38 @@
 <div id="messages" class="alert alert-success" ng-show="messages" ng-bind="messages"></div>
 <div ng-show="progress.active()" style="color: red; font-size: 50px;">Sending…</div>
-<form name="signup" class="form-inline" role="form" novalidate>
-    <div class="row">
-      <div class="form-group col-lg-12">
+<form name="signup" class="form" role="form" novalidate>
+
+    <div class="form-group col-lg-9 col-md-10 col-xs-11">
         <label for="first">First Name</label>
-        <span class="label label-danger" ng-show="signup.first.$error.required">Required</span>
-        <span class="label label-danger" ng-show="signup.first.$error.minlength || signup.first.$error.pattern">Invalid</span>
-        <input type="text" class="form-control" name="first" id="first" placeholder="First Name" ng-model="first" ng-pattern="/^[a-zA-Z]/" ng-minlength="2" required >
-      </div>
-      <div class="form-group col-lg-12" style="margin-top:20px;">
-        <label for="last">Last Name</label>
-        <span class="label label-danger" ng-show="signup.last.$error.required">Required</span>
-        <span class="label label-danger" ng-show="signup.last.$error.minlength || signup.last.$error.pattern">Invalid</span>
-        <input type="text" name="last" class="form-control" id="last" placeholder="Last Name" ng-model="last" ng-pattern="/[a-zA-Z]/" ng-minlength="2" required >  
-      </div>
+        <input type="text" class="form-control" name="first" id="first" placeholder="First Name" ng-model="first" ng-pattern="/^[a-zA-Z]/" ng-minlength="2" required />
+            <span class="label label-danger" ng-show="signup.first.$error.required">Required</span>
+            <span class="label label-danger" ng-show="signup.first.$error.minlength || signup.first.$error.pattern">Invalid</span>
     </div>
-    <div class="row">
-      <div class="form-group col-lg-12" style="margin-top:20px;">
+    
+    <div class="form-group col-lg-9 col-md-10 col-xs-11">
+        <label for="last">Last Name</label>
+        <input type="text" name="last" class="form-control" id="last" placeholder="Last Name" ng-model="last" ng-pattern="/[a-zA-Z]/" ng-minlength="2" required />
+            <span class="label label-danger" ng-show="signup.last.$error.required">Required</span>
+            <span class="label label-danger" ng-show="signup.last.$error.minlength || signup.last.$error.pattern">Invalid</span>
+    </div>
+
+    <div class="form-group col-lg-9 col-md-10 col-xs-11">
         <label for="email">E-mail Address</label>
-        <span class="label label-danger" ng-show="signup.email.$error.required">Required</span>
-        <span class="label label-danger" ng-show="signup.$error.email">Invalid</span>
-        <input type="email" name="email" id="email" ng-model="email" placeholder="Your Email Address" class="form-control" required />
-      </div>
-      <div class="form-group col-lg-12" style="margin-top:20px;">
-        <label for="phone">Phone Number</label>
-        <span class="label label-danger" ng-show="signup.phone.$error.required">Required</span>
-        <span class="label label-danger" ng-show="signup.phone.$error.pattern">Invalid</span>
-        <input type="tel" id="phone" name="phone" class="form-control" placeholder="Phone Number" ng-model="phone" ng-pattern="phoneNumberPattern" required />
-        </div>          
-    </div>    
+        <input type="email" name="email" id="email" ng-model="email" placeholder="Your Email Address" class="form-control" required  ui-us-phone-number />
+            <span class="label label-danger" ng-show="signup.email.$error.required">Required</span>
+            <span class="label label-danger" ng-show="signup.$error.email">Invalid</span>
+    </div>
+    
+    <div class="form-group col-lg-9 col-md-10 col-xs-11">
+        <label for="phoneNumber">Phone Number</label>
+        <input type="tel" id="phone" name="phoneNumber" class="form-control" placeholder="Phone Number" ng-model="phoneNumber" ng-pattern="phoneNumberPattern" required  ng-model="phoneNumber" ui-us-phone-number maxlength="14" />
+            <span class="label label-danger" ng-show="signup.phoneNumber.$error.required">Required</span>
+            <span class="label label-danger" ng-show="signup.phoneNumber.$error.pattern">Invalid</span>
+    </div>          
+ 
     <div class="row" style="margin-top:20px;"></div>
 
-    <div class="row" ng-if="slide.prev>=0"><button type="submit" id="submit" class="btn btn-default btn-lg next" href="#/{{slides[slide.next].label}}" ng-click="dat.setPanel(slide.next); submit(signup)" ng-disabled="signup.$invalid" style="margin-top:20px;" data-animation="am-fade-and-slide-top" data-template-url="modal/modal.tpl.html" bs-modal="modal">Submit</button>
+    <div class="row" ng-if="slide.prev>=0"><button type="submit" id="submit" class="btn btn-default btn-lg next" href="#/{{slides[slide.next].label}}" ng-click="dat.setPanel(slide.next); submit(signup)" ng-disabled="signup.$invalid || submitted" style="margin-top:20px;" data-animation="am-fade-and-slide-top" data-template-url="modal/modal.tpl.html" bs-modal="modal">Submit</button>
     </div>
     <div class="row" ng-if="slide.prev>=0"><a class="btn btn-sm prev" href="#/{{slides[slide.prev].label}}" ng-click="dat.setPanel(slide.prev);">Back</a></div>
 

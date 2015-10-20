@@ -3,6 +3,8 @@
 
 body        { 
 
+    min-width: 320px;
+    
     .container-fluid {
         background-color: @white;
     }
@@ -137,9 +139,6 @@ body        {
 
     .subWrapper>a { display:inline-block; margin: 10px; }
 
-    .perc:after { content: "%"; }
-    .curr:before { content: "$ "; }
-
     .yn {
         background-color: #bfc9d1;
         box-shadow: 0 0 3px 2px #999;
@@ -163,7 +162,7 @@ body        {
     input { margin: 0 auto; }
     .slidex { size: 100px;}
 
-    a {
+    a, button {
 
         &.next {
             width: 236px; height: 63px;
@@ -243,9 +242,20 @@ body        {
         margin: 0 auto;
     }
 
-    label.amt { border:0px; font-color:blue; text-align:center; font-size:32px; display:inline-block;}
-    label span { font-size: 32px; font-color:blue; }
-
+    input {
+        &.amt { 
+            border:0px; 
+            font-color:blue; 
+            text-align:center; 
+            font-size:32px; 
+            display:inline-block; 
+            font-color:blue;
+        }
+        &.perc:after { content: "%"; }
+        &.curr:before { content: "$ "; }
+    }
+    
+    
     .panel-heading { font-weight: bold; padding-bottom:0; margin-bottom:4px; }
     .subhead { margin-top:20px; font-style: italic; color:#fff; text-shadow: 1px 1px #4b9d3e; }
     .panel-title {
@@ -257,28 +267,29 @@ body        {
 
     form {
  
-        .form-inline .form-group {
+        &.form-inline {
             font-size: 100%;
             text-align: right;
-            margin: 5px 0;
+            margin: 5px auto; 
         }
-
-        .form-group { white-space: nowrap; }
-
-        .form-group>label {float:left;}
-
-        .form-inline .form-control {
-            display: block !important;
-            width: 100% !important;
+        
+        .form-control {
             vertical-align: middle;
         }
 
-        .form-inline .form-group {
-            display: block !important;
-            width: 100% !important;
-            vertical-align: middle;
-        }
-    
+        .form-group { 
+            white-space: nowrap;
+            margin: 0 auto;
+            float:none;
+            margin-top:20px;
+            
+            label { float: left; }
+            
+            .label-danger {
+                float: right;
+                margin-top: 6px;
+            }
+        }          
     }
     
 
@@ -291,22 +302,25 @@ body        {
             text-decoration:underline;
         }
 
-        #partnerLogos img { max-width:@mw; }
+        #partnerLogos img { 
+            max-width:@mw; 
+        }
+        
         #policy { 
             max-width:@mw; 
             text-align:left; 
             margin: 40px auto 20px; 
             font-size: 12px;
-        } 
-        
-        .tcpa {
+        }         
+    }
+
+    p {
+        &.tcpa {
             font-size: 11px;
             color: #333;
             text-align:left;
-        }        
-        
-    }
-    
+        }
+    }  
    
     .modal-backdrop { visibility:hidden; }
       
@@ -424,43 +438,11 @@ body        {
     
     
     
-input[type=range]::-ms-track {
-    width: 300px;
-    height: 5px;
-    
-    /*remove bg colour from the track, we'll use ms-fill-lower and ms-fill-upper instead */
-    background: transparent;
-    
-    /*leave room for the larger thumb to overflow with a transparent border */
-    border-color: transparent;
-    border-width: 6px 0;
+}
 
-    /*remove default tick marks*/
-    color: transparent;
-}
-input[type=range]::-ms-fill-lower {
-    background: #777;
-    border-radius: 10px;
-}
-input[type=range]::-ms-fill-upper {
-    background: #ddd;
-    border-radius: 10px;
-}
-input[type=range]::-ms-thumb {
-    border: none;
-    height: 16px;
-    width: 16px;
-    border-radius: 50%;
-    background: goldenrod;
-}
-input[type=range]:focus::-ms-fill-lower {
-    background: #888;
-}
-input[type=range]:focus::-ms-fill-upper {
-    background: #ccc;
-}    
-    
-    
-    
-    
+
+@media (max-width: 640px) {
+  img.logo {
+    width: 50%;
+  }
 }
