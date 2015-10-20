@@ -1,0 +1,466 @@
+@white        : #e2e2e2;
+@mw           : "684px";  
+
+body        { 
+
+    .container-fluid {
+        background-color: @white;
+    }
+ 
+
+    figure img { max-width: 300px; }
+    .row { text-align:center;}
+    .wrapper {
+        background: url("http://www.harprefiquote.com/sh3/images/bgVaW.jpg") no-repeat center top;
+        background-size: auto 600px;
+        padding-bottom: 40px;
+    }
+
+    .label:after .label-danger {
+        content: " ";
+        background-color: #d9534f;
+    }
+
+    form { max-width:600px; margin:0 auto; }
+
+    h5 { margin: 0; font-size: 18px; }
+
+    .panelWrapper {
+        position: relative;
+        min-height: 400px;
+        min-width: 320px;
+        padding: 0px;
+        overflow: hidden;
+        float: none;
+        margin-top: 20px;
+    }
+
+    .logo { margin-top:20px; }
+
+    .headline {
+        font-family: 'Open Sans', sans-serif;
+        font-size: 36px;
+        text-shadow: 1px 1px #666;
+        color: #F9F16C;
+        padding: 6px;
+        margin-top: 20px;
+        font-weight:bold;
+    }
+
+    .panel {
+        margin: 20px 0 0 0;
+        -webkit-animation: fade 0s linear; /* Safari/Chrome */
+        animation: fade 0s linear; /* IE10+ and Future Browsers */
+        float: none;
+        border: 0;
+        background: transparent;
+    }
+
+
+    ul {
+        list-style: none;
+        text-align: center;
+        background: transparent;
+        float:none !important;
+        min-height: 320px;
+    }
+
+    ul, li { display: inline-block; }
+
+    li {
+        display: inline-block;
+        background: white;
+        border-radius: 5px;
+        box-shadow: 0 0 3px 2px #666;
+        text-decoration: none;
+        transition: all linear .5s;
+        margin: 0 auto;
+        padding: 20px 50px 32px;
+        overflow: hidden;
+    }
+
+    .subWrapper {
+        background: transparent;
+        overflow: hidden;
+        -webkit-animation: slideup .4s linear;
+        animation: slideup .4s linear;
+    }
+
+    .subWrapper .slidedown {
+        background: transparent;
+        overflow: hidden;
+        -webkit-animation: slidedown .4s linear;
+        animation: slidedown .4s linear;
+    }
+
+    .slideup {
+        -webkit-animation: slideup .4s linear;
+        animation: slideup .4s linear;
+    }
+
+    .slidedown {
+        -webkit-animation: slidedown .4s linear;
+        animation: slidedown .4s linear;
+    }
+
+    @-webkit-keyframes fade {
+      from { opacity:0; }
+      to { opacity:1; }
+    }
+
+    @keyframes fade {
+      from { opacity:0; }
+      to { opacity:1; }
+    }
+
+    @-webkit-keyframes slideup {
+      from { transform: translateY(0px); }
+      to { transform: translateY(200px); }
+    }
+
+    @keyframes slideup {
+      from { transform: translateY(200px); }
+      to { transform: translateY(0px); }
+    }
+
+    @-webkit-keyframes slidedown {
+      from { transform: translateY(200px); }
+      to { transform: translateY(0px); }
+    }
+
+    @keyframes slidedown {
+      from { transform: translateY(0px); }
+      to { transform: translateY(2000px); }
+    }
+
+    .current .subWrapper { transform: translateY(0px); }
+
+    .subWrapper>a { display:inline-block; margin: 10px; }
+
+    .perc:after { content: "%"; }
+    .curr:before { content: "$ "; }
+
+    .yn {
+        background-color: #bfc9d1;
+        box-shadow: 0 0 3px 2px #999;
+        border: 0px !important;
+        transition: background linear 0.4s;
+        padding: 10px 35px;
+        text-transform: capitalize;
+    }
+
+    .yn:hover {
+        background-color: #0480b2;
+            color: #fff;
+    }
+
+    .glyphicon-play {
+       font-size: 28px;
+       top: 2px;
+    }
+    
+
+    input { margin: 0 auto; }
+    .slidex { size: 100px;}
+
+    a {
+
+        &.next {
+            width: 236px; height: 63px;
+            margin-top:20px;
+            line-height:40px;
+            font-size: 32px;
+            text-shadow: 1px 1px 2px black;
+            border: 2px solid #ccc;
+            cursor: pointer;
+            background: #ff0000; /* Old browsers */
+            background: -moz-linear-gradient(top,  #ff0000 0%, #ad0317 44%, #a50002 100%); /* FF3.6+ */
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ff0000), color-stop(44%,#ad0317), color-stop(100%,#a50002)); /* Chrome,Safari4+ */
+            background: -webkit-linear-gradient(top,  #ff0000 0%,#ad0317 44%,#a50002 100%); /* Chrome10+,Safari5.1+ */
+            background: -o-linear-gradient(top,  #ff0000 0%,#ad0317 44%,#a50002 100%); /* Opera 11.10+ */
+            background: -ms-linear-gradient(top,  #ff0000 0%,#ad0317 44%,#a50002 100%); /* IE10+ */
+            background: linear-gradient(to bottom,  #ff0000 0%,#ad0317 44%,#a50002 100%); /* W3C */
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff0000', endColorstr='#a50002',GradientType=0 ); /* IE6-9 */
+            color: #ffffff;
+            transition: background linear 0.4s;
+        }
+
+        &.next:hover {
+            background: #a50002; /* Old browsers */
+            background: -moz-linear-gradient(top,  #a50002 0%, #ad0317 56%, #ff0000 100%); /* FF3.6+ */
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#a50002), color-stop(56%,#ad0317), color-stop(100%,#ff0000)); /* Chrome,Safari4+ */
+            background: -webkit-linear-gradient(top,  #a50002 0%,#ad0317 56%,#ff0000 100%); /* Chrome10+,Safari5.1+ */
+            background: -o-linear-gradient(top,  #a50002 0%,#ad0317 56%,#ff0000 100%); /* Opera 11.10+ */
+            background: -ms-linear-gradient(top,  #a50002 0%,#ad0317 56%,#ff0000 100%); /* IE10+ */
+            background: linear-gradient(to bottom,  #a50002 0%,#ad0317 56%,#ff0000 100%); /* W3C */
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a50002', endColorstr='#ff0000',GradientType=0 ); /* IE6-9 */
+            color: #ffffff;
+            border: 2px solid #fff;
+            transition: background linear 0.8s;
+        }
+
+        &.prev {
+            background-color: #777;
+            color: #fff;
+            clear:both;
+            margin: 20px auto;
+            display: block;
+            width: 50px;
+            transition: all linear 0.4s;
+        }
+
+        &.prev:hover {
+            background-color: #5e5e5e;
+            color: #fff;
+            transition: all linear 0.8s;
+        }  
+        
+        figure {
+            border: 4px solid #ccc;
+            border-radius: 4px;
+            background-color: #ccc;
+            display:inline-block;
+            transition: all linear 0.4s;
+        
+            img { 
+                border:1px solid #ccc; 
+                background-color: #f2f2f2; 
+            }
+            
+        }
+        
+        figure:hover {
+            border: 4px solid red;
+            transition: all linear 0.8s;
+            box-shadow: 0 0 3px 2px #999;
+        }
+        
+    }
+
+    button {
+        float: none;
+        display: block;
+        margin: 0 auto;
+    }
+
+    label.amt { border:0px; font-color:blue; text-align:center; font-size:32px; display:inline-block;}
+    label span { font-size: 32px; font-color:blue; }
+
+    .panel-heading { font-weight: bold; padding-bottom:0; margin-bottom:4px; }
+    .subhead { margin-top:20px; font-style: italic; color:#fff; text-shadow: 1px 1px #4b9d3e; }
+    .panel-title {
+        color: #264255;
+        font-size: 32px;
+        padding: 10px 0;
+    }
+
+
+    form {
+ 
+        .form-inline .form-group {
+            font-size: 100%;
+            text-align: right;
+            margin: 5px 0;
+        }
+
+        .form-group { white-space: nowrap; }
+
+        .form-group>label {float:left;}
+
+        .form-inline .form-control {
+            display: block !important;
+            width: 100% !important;
+            vertical-align: middle;
+        }
+
+        .form-inline .form-group {
+            display: block !important;
+            width: 100% !important;
+            vertical-align: middle;
+        }
+    
+    }
+    
+
+    footer { 
+        background: #e6e6e6; 
+        padding: 20px; 
+        margin:0; 
+        
+        a {
+            text-decoration:underline;
+        }
+
+        #partnerLogos img { max-width:@mw; }
+        #policy { 
+            max-width:@mw; 
+            text-align:left; 
+            margin: 40px auto 20px; 
+            font-size: 12px;
+        } 
+        
+        .tcpa {
+            font-size: 11px;
+            color: #333;
+            text-align:left;
+        }        
+        
+    }
+    
+   
+    .modal-backdrop { visibility:hidden; }
+      
+    .modal-backdrop.am-fade {
+      opacity: .5;
+      transition: opacity .15s linear;
+      &.ng-enter {
+        opacity: 0;
+        &.ng-enter-active {
+          opacity: .5;
+        }
+      }
+      &.ng-leave {
+        opacity: .5;
+        &.ng-leave-active {
+          opacity: 0;
+        }
+      }
+    }
+    
+    .modal { top:50%; }
+
+
+    /* Range Slider */
+    input[type=range] {
+      -webkit-appearance: none;
+      width: 60%;
+        height: 80px;
+      margin: 0 auto;
+    }
+    input[type=range]:focus {
+      outline: none;
+    }
+    input[type=range]::-webkit-slider-runnable-track {
+      width: 100%;
+      height: 8.4px;
+      cursor: pointer;
+      animate: 0.2s;
+      box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+      background: #66cc00;
+      border-radius: 1.3px;
+      border: 0.2px solid #010101;
+    }
+    input[type=range]::-webkit-slider-thumb {
+      box-shadow: 1px 1px 1px #333, 0px 0px 1px #0d0d0d;
+      border: 1px solid #ccc;
+      height: 36px;
+      width: 16px;
+      border-radius: 3px;
+      background: #e6e6e6;
+      cursor: pointer;
+      -webkit-appearance: none;
+      margin-top: -14px;
+    }
+    input[type=range]:focus::-webkit-slider-runnable-track {
+      background: #66cc00;
+    }
+    input[type=range]::-moz-range-track {
+      width: 100%;
+      height: 8.4px;
+      cursor: pointer;
+      animate: 0.2s;
+      box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+      background: #3071a9;
+      border-radius: 1.3px;
+      border: 0.2px solid #010101;
+    }
+    input[type=range]::-moz-range-thumb {
+      box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+      border: 1px solid #000000;
+      height: 36px;
+      width: 16px;
+      border-radius: 3px;
+      background: #ffffff;
+      cursor: pointer;
+    }
+    input[type=range]::-ms-track {
+      width: 100%;
+      height: 8.4px;
+      cursor: pointer;
+      animate: 0.2s;
+      background: transparent;
+      border-color: transparent;
+      border-width: 16px 0;
+      color: transparent;
+    }
+    input[type=range]::-ms-fill-lower {
+      background: #2a6495;
+      border: 0.2px solid #010101;
+      border-radius: 2.6px;
+      box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+    }
+    input[type=range]::-ms-fill-upper {
+      background: #3071a9;
+      border: 0.2px solid #010101;
+      border-radius: 2.6px;
+      box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+    }
+    input[type=range]::-ms-thumb {
+      box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+      border: 1px solid #000000;
+      height: 36px;
+      width: 16px;
+      border-radius: 3px;
+      background: #ffffff;
+      cursor: pointer;
+    }
+    input[type=range]:focus::-ms-fill-lower {
+      background: #3071a9;
+    }
+    input[type=range]:focus::-ms-fill-upper {
+      background: #367ebd;
+    }    
+
+    
+    
+    
+input[type=range]::-ms-track {
+    width: 300px;
+    height: 5px;
+    
+    /*remove bg colour from the track, we'll use ms-fill-lower and ms-fill-upper instead */
+    background: transparent;
+    
+    /*leave room for the larger thumb to overflow with a transparent border */
+    border-color: transparent;
+    border-width: 6px 0;
+
+    /*remove default tick marks*/
+    color: transparent;
+}
+input[type=range]::-ms-fill-lower {
+    background: #777;
+    border-radius: 10px;
+}
+input[type=range]::-ms-fill-upper {
+    background: #ddd;
+    border-radius: 10px;
+}
+input[type=range]::-ms-thumb {
+    border: none;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    background: goldenrod;
+}
+input[type=range]:focus::-ms-fill-lower {
+    background: #888;
+}
+input[type=range]:focus::-ms-fill-upper {
+    background: #ccc;
+}    
+    
+    
+    
+    
+}

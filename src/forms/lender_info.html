@@ -1,0 +1,13 @@
+<div id="messages" class="alert alert-success" ng-show="messages" ng-bind="messages"></div>
+<form name="lenderForm" class="form-inline" role="form" novalidate>
+    <div class="row">
+      <div class="form-group col-lg-12">
+        <label for="address"></label>
+        <span class="label label-danger" ng-show="lenderForm.lender.$error.required">Required</span>
+        <input type="text" class="form-control" name="lender" id="lender" placeholder="Current Lender" ng-model="lender" required >
+      </div>
+    </div>
+    <div class="row" style="margin-top:20px;"></div>
+    <div class="row" ng-if="$index != 0"><a class="btn btn-default btn-lg next" href="#/{{slides[slide.next].label}}" ng-click="dat.setPanel(slide.next); update(slide.label,lender)" ng-disabled="lenderForm.$invalid;" style="margin-top:20px;">Next</a></div>
+    <div class="row" ng-if="$index != 0"><a class="btn btn-sm prev" href="#/{{slides[slide.prev].label}}" ng-click="dat.setPanel(slide.prev);">Back</a></div>
+</form>
