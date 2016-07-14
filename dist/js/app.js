@@ -5,7 +5,7 @@
     spinner = new Spinner(opts).spin(loading),
     content = document.getElementsByClassName("container-fluid")[0],
     hash = window.location.hash;
-    
+
     loading.appendChild(spinner.el);
 
     window.onload = function(){
@@ -52,7 +52,7 @@
                 ]
             }
         };
-        
+
         $scope.logoUrl = "http://www.harprefiquote.com/sh3/images/hrq.png";
         $scope.headline = "Qualify for HARP Refinance Program and SAVE ON YOUR MORTGAGE!*";
         $scope.subhead = "Free Program - No SSN Required* - Set to Expire in 2016";
@@ -271,7 +271,7 @@
                         "prev": 51,
                         "next": 61,
                         "title": "Who is Your Current Lender?",
-                        "templateUrl": "forms/lender_info.html"                      
+                        "templateUrl": "forms/lender_info.html"
                     },
                     "61" : {
                         "id": 61,
@@ -291,7 +291,7 @@
                 }
             }
         }
-        
+
 
         this.panel = 0;
 
@@ -321,9 +321,9 @@
 
         if (hash.indexOf("info") > -1 || window.onload) {
             removeHash();
-        }        
+        }
 
-    }); 
+    });
 
 
     app.run(
@@ -341,8 +341,8 @@
         $scope.modal = {
           "title": "Confirmation",
           "content": "Thank you for completing this form. An agent will contact you shortly regarding your submission."
-        };   
-        
+        };
+
         // Inititate the promise tracker to track form submissions.
         $scope.progress = promiseTracker();
 
@@ -366,7 +366,7 @@
 'propertyType' : flowData.propertyType,
 'creditRating' : flowData.creditRating,
 'propertyValue' : flowData.propertyValue,
-'lateMortgage' : flowData.lateMortgage,                    
+'lateMortgage' : flowData.lateMortgage,
 'propertyAddress' : flowData.propertyAddress,
 'propertyZip' : flowData.propertyZip,
                   'first' : $scope.first,
@@ -418,12 +418,12 @@
                     return regexp.test(value);
                 }
             };
-        })();        
-        
-    
+        })();
+
+
     });
-    
-    
+
+
     var myConstant = {},
     rootPath = "../forms/";
     myConstant.codeCampType = "svcc";

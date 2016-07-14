@@ -1,0 +1,95 @@
+                 thisSlider,
+                ratio,
+                dollarVal,
+                percentVal,
+                selectedVal,
+                formattedVal,
+ 
+ 
+ 
+ 
+ 
+ 
+                    if ( isSafari ) {
+                    element.find('input[type="range"]').on('touchstart',function(e) {
+                        thisSlider = $(this);
+                        console.log(thisSlider);
+                        dragging = false;    
+                        var touch = e.originalEvent && e.originalEvent.touches && e.originalEvent.touches[0];
+                        e = touch || e;
+                        var offset = $(e.target).offset(),
+                        x = e.pageX - offset.left;
+                        ratio = x/thisSlider.width();
+                        selectedVal = Math.round( (ratio * scope.max) / scope.step ) * scope.step;
+                        
+                        if (!dragging) {
+                            xPos = x;
+                            console.log(xPos, thisSlider.width());
+                      //      percentVal = Math.round( (Math.round( (ratio * scope.max)/1000)*1000) / scope.step) * scope.step;
+                            console.log(selectedVal);
+                            
+                            if (scope.unit === 'currency')
+                                formattedVal = '$'+$filter('number')( selectedVal );
+                            else
+                                formattedVal = $filter('number')( selectedVal )+'%';
+                            
+                            element.find('.amt').val(formattedVal);
+                            element.val(selectedVal);
+                        }
+                    })
+                    .on('touchend',function(event) {
+                    //    thisSlider.val( Math.round(( ratio * scope.max)*scope.step )/scope.step );
+                        element.val(selectedVal);
+                        dragging = false;
+                    })
+                    .on("touchmove", function(e){
+                        dragging = true; 
+                        if (scope.unit === 'currency')
+                            thisSlider.parent().find('.amt').val('$'+$filter('number')(scope.amt));
+                        else 
+                            thisSlider.parent().find('.amt').val($filter('number')(scope.amt)+'%');
+                        
+                        thisSlider.val(selectedVal);
+                    });                      
+                }
+                
+                
+                
+                
+                
+                
+                
+                
+                
+               if ( isSafari ) {
+                    element.on('touchstart',function(e) {
+                        dragging = false;    
+                        var touch = e.originalEvent && e.originalEvent.touches && e.originalEvent.touches[0];
+                        e = touch || e;
+                        var offset = $(e.target).offset(),
+                        x = e.pageX - offset.left;
+                        
+                        if (!dragging) {
+                            xPos = x;                      
+                            if (scope.unit === 'currency')
+                                element.find('.amt').val('$'+$filter('number')( Math.round((( (xPos/$('input[type="range"]').width()) * scope.max)*1000 )/1000) ) );
+                            else 
+                                element.find('.amt').val( Math.round((( (xPos/$('input[type="range"]').width()) * scope.max)*1000 )/1000 / scope.step)*scope.step+'%');             
+                            
+                             $('input[type="range"]').val( Math.round((( (xPos/$('input[type="range"]').width()) * scope.max)*1000 )/1000) );
+                        }
+                    })
+                    .on('touchend',function(event) {
+                        element.val(xPos/element.width() * scope.max);
+                        dragging = false;
+                    })
+                    .on("touchmove", function(e){
+                        dragging = true; 
+                        if (scope.unit === 'currency')
+                            element.find('.amt').val('$'+$filter('number')(scope.amt));
+                        else 
+                            element.find('.amt').val($filter('number')(scope.amt)+'%');
+                        
+                        element.val(xPos/element.width() * scope.max);
+                    });                      
+                }               

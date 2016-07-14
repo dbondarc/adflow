@@ -1,0 +1,192 @@
+// Coded by Dan Bond
+// Place some loading transition here
+<!--window.onload = function() {
+    $('.globalWrapper').animate({'opacity':1}, globTimer, 'linear');
+};-->
+
+(function ( $, win, doc ) {
+    var timer = 200,               // assign slider speed
+    anim = "swing",                 // assign animation style
+    wrapper = $('ul'),              // slider section wrapper id
+    articles = $('li'),
+    max = articles.length,
+    lastSlide,
+    activeSlide,
+    mouseTimer, liW, i;
+
+    var WZ = {
+        apply: function( obj ) {
+            $.extend( true, WZ, obj );
+        }
+    };
+
+    WZ.apply({
+        env: {
+            isMobile: null,
+            isPortrait: null
+        },
+        config: CONFIG,
+        utils: {
+            envDetect: function() {
+                var userAgent = win.navigator.userAgent;
+
+                return {
+                    getUserAgent: function() {
+                        return userAgent;
+                    },
+                    isiOS: function() {
+                        return ( /(iPad|iPhone|iPod)/gi ).test( userAgent );
+                    },
+                    isAndroid: function() {
+                        return ( /(Android)/gi ).test( userAgent );
+                    },
+                    isWindowsPhone: function() {
+                        return ( /(IEMobile)/gi ).test( userAgent );
+                    },
+                    isBB10: function() {
+                        return ( /(BB10)/gi ).test( userAgent );
+                    },
+                    isMobile: function() {
+                        var s = this;
+                        return ( s.isiOS() || s.isAndroid() || s.isWindowsPhone() || s.isBB10() );
+                    }
+                };
+            },          
+        }
+    });
+
+    // Check screen orientation
+    function readDeviceOrientation() {
+        if ( $(win).innerWidth() > $(win).innerHeight() ) { 
+            WZ.env.isPortrait = false;  // Landscape
+        } else {
+            WZ.env.isPortrait = true;   // Portrait
+        }
+    }
+    
+    window.onresize = readDeviceOrientation;
+    readDeviceOrientation();
+    
+    // Set isMobile
+    WZ.env.isMobile = WZ.utils.envDetect().isMobile();
+
+    function resizeAll() {
+       
+        if (WZ.env.isMobile) {  // ALL MOBILE
+
+            $('ul').css({
+                'width': win.innerWidth,
+                'height': 'auto'
+            }).last().css({
+                'width': win.innerWidth,
+                'height': 'auto'
+            });    
+        
+            if (WZ.env.isPortrait) {    // PORTRAIT
+                liW = "100%";
+                liH = "100%";
+            } 
+            else {  // LANDSCAPE
+                liW = win.innerWidth;
+                liH = win.innerHeight - yOffset;
+            }
+        }
+        else {
+            if ( wrapper.parent()[0] === $('body')[0] ) {
+                liW = win.innerWidth;
+                liH = win.innerHeight;
+            } else {
+                liW = wrapper.parent().width();
+                liH = '100%';
+            }
+        }
+            
+        $('ul, li').css({
+            'width': liW,
+            'height': liH,
+            'max-height': 800
+        }); 
+
+    }
+
+    $(function(){
+
+        function slideIdx() {
+            activeSlide = $('article').index($('.active'));
+            setTimeout(slideIdx, 1000);
+            return activeSlide;
+        };
+        slideIdx();
+
+        function goToSlide(slideIndex) {
+            i = $('article').index($('.active'));
+            $this = $('article').eq(i);
+            $next = $('article').eq(slideIndex);
+
+            if(i >= 0 && i < max) {
+
+                if ( i < slideIndex ) {
+                    $this.css( 'top',0 ).stop(true, true).animate({
+                        'top':-liW
+                    }, timer, anim).removeClass('active');
+                    $next.css( 'top',liH ).stop(true, true).animate({
+                        'top':0
+                    }, timer, anim).addClass('active');
+                }
+
+                else if ( i > slideIndex ) {
+                    $this.css( 'top',0 ).stop(true, true).animate({
+                        'top': liH
+                    }, timer, anim).removeClass('active');
+                    $next.css( 'top',-liH ).stop(true, true).animate({
+                        'top':0
+                    }, timer, anim).addClass('active');
+                }
+
+                else return false;
+            }
+        }
+
+        $('.next').on('click', function() {
+            resizeAll();
+            var slideNum = $(this).attr('data-slide');
+            lastSlide = $(this).attr('data-origin');
+
+            if (slideNum) {
+                goToSlide(slideNum);
+            } else {
+                slideNum = $('ul').index($('.active'));
+                goToSlide(slideNum + 1);
+            }
+
+        });
+
+        $('.prev').on('click', function() {
+            resizeAll();
+            var slideNum = $(this).attr('data-slide');
+
+            if (slideNum) {
+                goToSlide(slideNum);
+            } else {
+                slideNum = $('ul').index($('.active'));
+                goToSlide(Math.abs(i-1));
+            }
+        });
+
+        resizeAll();
+
+        $('ul, li').css(
+            'height', liH
+        );
+
+    });
+
+    $(window).resize(function() {
+        resizeAll();
+    });
+
+
+    window.requestAnimFrame=window.requestAnimationFrame||window.webkitRequestAnimationFrame||window.mozRequestAnimationFrame||window.oRequestAnimationFrame||window.msRequestAnimationFrame||function(a){window.setTimeout(a,1E3/60)};
+
+
+})( jQuery, window, document );
